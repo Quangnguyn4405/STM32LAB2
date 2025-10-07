@@ -77,8 +77,8 @@ Disassembly of section .text:
  8000148:	08001f70 	.word	0x08001f70
 
 0800014c <display7SEG.5966>:
-  MX_TIM2_Init();
   MX_GPIO_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
 
@@ -495,7 +495,7 @@ Disassembly of section .text:
 	              break;
  800045e:	e023      	b.n	80004a8 <display7SEG.5966+0x35c>
 
-	          default: // Tắt hết khi nhập số không hợp lệ
+	          default:
 	              HAL_GPIO_WritePin(seg_a_GPIO_Port, seg_a_Pin, GPIO_PIN_SET);
  8000460:	2201      	movs	r2, #1
  8000462:	2101      	movs	r1, #1
@@ -553,10 +553,10 @@ int main(void)
  80004c0:	f000 fa56 	bl	8000970 <HAL_Init>
   SystemClock_Config();
  80004c4:	f000 f85a 	bl	800057c <SystemClock_Config>
-  MX_TIM2_Init();
- 80004c8:	f000 f894 	bl	80005f4 <MX_TIM2_Init>
   MX_GPIO_Init();
- 80004cc:	f000 f8de 	bl	800068c <MX_GPIO_Init>
+ 80004c8:	f000 f8e0 	bl	800068c <MX_GPIO_Init>
+  MX_TIM2_Init();
+ 80004cc:	f000 f892 	bl	80005f4 <MX_TIM2_Init>
   HAL_TIM_Base_Start_IT(&htim2);
  80004d0:	4828      	ldr	r0, [pc, #160]	; (8000574 <main+0xc0>)
  80004d2:	f001 f995 	bl	8001800 <HAL_TIM_Base_Start_IT>
@@ -905,19 +905,19 @@ static void MX_GPIO_Init(void)
  80006ce:	683b      	ldr	r3, [r7, #0]
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|EN0_Pin|EN1_Pin, GPIO_PIN_SET);
- 80006d0:	2201      	movs	r2, #1
+  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|EN0_Pin|EN1_Pin, GPIO_PIN_RESET);
+ 80006d0:	2200      	movs	r2, #0
  80006d2:	21e0      	movs	r1, #224	; 0xe0
  80006d4:	4814      	ldr	r0, [pc, #80]	; (8000728 <MX_GPIO_Init+0x9c>)
  80006d6:	f000 fc35 	bl	8000f44 <HAL_GPIO_WritePin>
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, seg_a_Pin|seg_b_Pin|seg_c_Pin|seg_d_Pin
- 80006da:	2201      	movs	r2, #1
+ 80006da:	2200      	movs	r2, #0
  80006dc:	217f      	movs	r1, #127	; 0x7f
  80006de:	4813      	ldr	r0, [pc, #76]	; (800072c <MX_GPIO_Init+0xa0>)
  80006e0:	f000 fc30 	bl	8000f44 <HAL_GPIO_WritePin>
-                          |seg_e_Pin|seg_f_Pin|seg_g_Pin, GPIO_PIN_SET);
+                          |seg_e_Pin|seg_f_Pin|seg_g_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : LED_RED_Pin EN0_Pin EN1_Pin */
   GPIO_InitStruct.Pin = LED_RED_Pin|EN0_Pin|EN1_Pin;
