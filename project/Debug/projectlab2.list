@@ -614,8 +614,8 @@ int main(void)
  8000516:	2119      	movs	r1, #25
  8000518:	2001      	movs	r0, #1
  800051a:	f000 fc4d 	bl	8000db8 <setTimer>
-  setTimer(2, 100);
- 800051e:	2164      	movs	r1, #100	; 0x64
+  setTimer(2, 101);
+ 800051e:	2165      	movs	r1, #101	; 0x65
  8000520:	2002      	movs	r0, #2
  8000522:	f000 fc49 	bl	8000db8 <setTimer>
   setTimer(3,1);

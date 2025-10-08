@@ -397,7 +397,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   setTimer(0, 100);
   setTimer(1, 25);
-  setTimer(2, 100);
+  setTimer(2, 101);
   setTimer(3,1);
   setTimer(4, 25);
 
